@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="contenedor" style="display: flex; justify-content: space-between; border: 1px solid orange; padding: 20px">
+
+        <div>
+            <h1>{{ post.titulo }}</h1>
+            <h3>{{ post.resumen }}</h3>
+            <p>{{ post.cuerpo_del_post }}</p>
+            <p><i>{{ post.categoria.nombre }}</i> | <date><i>{{ post.fecha_publicacion }}</i></date></p>
+        </div>
+
+        <div>
+            <img src="{{ post.url_foto }}" alt="{{ post.titulo }}" width="350px" title="{{ post.titulo }}">
+        </div>
+
+    </div>
+
+{% endblock %}
