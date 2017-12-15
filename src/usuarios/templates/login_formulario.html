@@ -5,9 +5,9 @@
 {% block content %}
 
 <div class="p-5">
-    <h1 class="center">Login</h1>
+    <h1 class="">Login</h1>
 
-    <form method="POST">
+    <form method="POST" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         {% if messages %}
@@ -17,7 +17,7 @@
 
             {% endfor %}
         {% endif %}
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Entrar</button>
     </form>
 </div>
 

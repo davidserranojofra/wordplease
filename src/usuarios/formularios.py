@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+from usuarios.models import Post
 
 
 class LoginForm(forms.Form):
@@ -8,10 +10,8 @@ class LoginForm(forms.Form):
 
 
 
-class RegistroForm(forms.Form):
+class RegistroForm(ModelForm):
 
-    rNombre = forms.CharField(label='Nombre')
-    rApellidos = forms.CharField(label='Apellidos')
-    rNombreUsuario = forms.CharField(label='Nombre de usuario')
-    rEmail = forms.EmailField(label='Email')
-    rContrasenya = forms.CharField(label='Contraseña')
+    class Meta:
+        model: Post
+        fields: '__all__'

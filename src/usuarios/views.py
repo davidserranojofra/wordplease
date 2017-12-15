@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
 
-from usuarios.formularios import LoginForm
+from usuarios.formularios import LoginForm, RegistroForm
 
 
 class LoginView(View):
@@ -30,3 +30,10 @@ class LogoutView(View):
     def get(self, request):
         django_logout(request)
         return redirect('pagina_login')
+
+
+class Registro(View):
+
+    def get(self, request):
+        form = RegistroForm()
+        return render(request, "signup.html", {'form': form})
