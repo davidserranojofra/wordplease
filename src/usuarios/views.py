@@ -51,8 +51,6 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-
-
 class ListadoBlogs(ListView):
 
     model = User
