@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
+{% block head_titulo %} Mis posts {% endblock %}
+
 {% block content %}
 
-    <h1 class="text-center">Bienvenido a Wordplease</h1>
 
-    {% for post in posts %}
-        <a href="{% url 'pagina_detalle_post' post.pk %}" title="{{ post.titulo }}">
+    <h1 class="text-center">Mi lista de posts</h1>
+
+    <ul>
+        {% for post in object_list %}
+
+            <a href="{% url 'pagina_detalle_post' post.pk %}" title="{{ post.titulo }}">
             <div class="container" style="display: flex; justify-content: space-between; border: 1px solid orange; padding: 20px">
 
                 <div class="info">
@@ -18,6 +23,9 @@
 
             </div>
         </a>
-    {% endfor %}
+
+        {% endfor%}
+    </ul>
+
 
 {% endblock %}

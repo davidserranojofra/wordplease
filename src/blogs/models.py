@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 class Categoria(models.Model):
@@ -8,6 +9,9 @@ class Categoria(models.Model):
         return self.nombre
 
 class Post(models.Model):
+
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
     titulo = models.CharField(max_length=50)
     resumen = models.TextField()
     cuerpo_del_post = models.TextField()

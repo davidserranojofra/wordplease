@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head_titulo %} Listado de blogs | Wordplease {% endblock %}
+
+
+{% block content %}
+    <h1 class="text-center">Listado blogs</h1>
+
+    <ul>
+        {% for usuario in object_list %}
+            <li><strong>Nombre completo:</strong> {{ usuario.first_name }} {{ usuario.last_name }} <strong>| Nombre de usuario: </strong> {{ usuario.username }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
