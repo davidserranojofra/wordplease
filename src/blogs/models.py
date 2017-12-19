@@ -16,7 +16,7 @@ class Post(models.Model):
     resumen = models.TextField()
     cuerpo_del_post = models.TextField()
     url_foto = models.URLField()
-    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT) #ManyToManyField(Categoria)
+    categoria = models.ManyToManyField(Categoria)
     fecha_publicacion = models.DateTimeField()
 
     creado_en = models.DateTimeField(auto_now_add=True)

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from blogs.views import home, detalle_post, Nuevo_post, Mis_posts
+from blogs.views import home, detalle_post, Nuevo_post, Mis_posts, blog_usuario
 from usuarios.views import LoginView, LogoutView, ListadoBlogs, signup
 
 urlpatterns = [
@@ -32,7 +32,7 @@ urlpatterns = [
     path('new-post', Nuevo_post.as_view(), name="pagina_nuevo_post"),
     path('posts/<int:pk>', detalle_post, name="pagina_detalle_post"),
     path('blogs/', ListadoBlogs.as_view(), name="pagina_listado_blogs"),
-    path('blogs/<username>', Mis_posts.as_view(), name="pagina_posts_propios"),
+    path('blogs/<int:pk>', blog_usuario, name="pagina_posts_propios"),
     path('', home, name="pagina_inicio")
 
 ]
