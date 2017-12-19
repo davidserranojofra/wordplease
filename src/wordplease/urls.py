@@ -35,4 +35,13 @@ urlpatterns = [
     #path('blogs/<int:pk>', blog_usuario, name="pagina_posts_propios"),
     path('', home, name="pagina_inicio")
 
+    #API REST
+
+    #API de usuarios
+
+    #API de blogs
+
+    #API de posts
+
+
 ]
