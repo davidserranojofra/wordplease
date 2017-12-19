@@ -17,7 +17,7 @@ def home(request):
 
 @login_required
 def detalle_post(request, pk):
-    posible_post = Post.objects.filter(pk=pk).select_related("categoria")
+    posible_post = Post.objects.filter(pk=pk).select_related("usuario")
     if len(posible_post) == 0:
         #no existe post
         return render(request, "404.html", status=404)
@@ -47,22 +47,21 @@ class Nuevo_post(LoginRequiredMixin, View):
         return render(request, 'new_post_form.html', {'form': form})
 
 
-def blog_usuario(request, pk):
-    buscar_usuario = Post.objects.filter(pk=pk).select_related("usuario")
-    if len(buscar_usuario) == 0:
-        return render(request, '404.html', status=404)
-    else:
-        usuarios = buscar_usuario
-        context = {'post': usuarios}
-        return render(request, "mis_posts.html", context)
+#def blog_usuario(request, pk):
+#    buscar_usuario = Post.objects.filter(pk=pk).select_related("usuario")
+#    if len(buscar_usuario) == 0:
+#        return render(request, '404.html', status=404)
+#    else:
+#        usuarios = buscar_usuario
+#        context = {'post': usuarios}
+#        return render(request, "mis_posts.html", context)
+#
 
 
-
-
-class Mis_posts(ListView):
-    model = Post
-    template_name = "mis_posts.html"
-
-    def get_queryset(self):
-        queryset = super(Mis_posts, self).get_queryset()
-        return queryset.filter(usuario=self.request.user)
+#class Mis_posts(ListView):
+#    model = Post
+#    template_name = "mis_posts.html"
+#
+#    def get_queryset(self):
+#        queryset = super(Mis_posts, self).get_queryset()
+#        return queryset.filter(usuario=self.request.user)

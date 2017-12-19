@@ -5,11 +5,9 @@
 
 {% block content %}
     <h1 class="text-center">Listado blogs</h1>
-
-    <ul>
+    <div class="p-5">
         {% for usuario in object_list %}
-            <li><strong>Nombre completo:</strong> {{ usuario.first_name }} {{ usuario.last_name }} <strong>| Nombre de usuario: </strong> {{ usuario.username }}</li>
+            <p class="p-3"><strong>Nombre completo:</strong> {{ usuario.first_name }} {{ usuario.last_name }} <strong>| Usuario: </strong> {{ usuario.username }}</p>
         {% endfor %}
-    </ul>
-
+    </div>
 {% endblock %}
