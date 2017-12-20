@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from blogs.views import home, detalle_post, Nuevo_post, blog_usuario, blog_usuario_click
+from usuarios.api import ListarblogsAPI, ListarActualizarBorrarUsuarios
 from usuarios.views import LoginView, LogoutView, ListadoBlogs, signup
 
 urlpatterns = [
@@ -34,11 +35,17 @@ urlpatterns = [
     path('blogs/<slug:nombre_usuario>/<int:pk>', blog_usuario_click, name="pagina_detalle_post_usuario"),
     path('blogs/<slug:nombre_usuario>', blog_usuario, name="pagina_posts_propios"),
     path('blogs/', ListadoBlogs.as_view(), name="pagina_listado_blogs"),
-    path('', home, name="pagina_inicio")
+    path('', home, name="pagina_inicio"),
 
     #API REST
 
     #API de usuarios
+
+    #API de blogs
+    path('api/1.0/blogs/', ListarblogsAPI.as_view(), name='api_listar_blogs'),
+
+
+
 
     #API de blogs
 

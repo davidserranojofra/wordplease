@@ -13,8 +13,8 @@ class LoginForm(forms.Form):
 
 
 class RegistroForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=False, help_text='Octional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Opcional.')
+    first_name = forms.CharField(max_length=30, label='Nombre')
+    last_name = forms.CharField(max_length=30, label='Apellidos')
     email = forms.EmailField(max_length=254)
 
     class Meta:
