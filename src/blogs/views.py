@@ -46,7 +46,7 @@ class Nuevo_post(LoginRequiredMixin, View):
             messages.success(request, message)
         return render(request, 'new_post_form.html', {'form': form})
 
-
+@login_required
 def blog_usuario(request, nombre_usuario):
     usuario = get_object_or_404(User, username=nombre_usuario)
     print(usuario)
@@ -56,7 +56,7 @@ def blog_usuario(request, nombre_usuario):
     return render(request, "mis_posts.html", context)
 
 
-
+@login_required
 def blog_usuario_click(request, nombre_usuario, pk):
     usuario = get_object_or_404(User, username=nombre_usuario)
 

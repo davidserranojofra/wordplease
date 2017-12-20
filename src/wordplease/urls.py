@@ -30,7 +30,7 @@ urlpatterns = [
 
     #blogs
     path('new-post', Nuevo_post.as_view(), name="pagina_nuevo_post"),
-    path('posts/<int:pk>', detalle_post, name="pagina_detalle_post"),
+    #path('posts/<int:pk>', detalle_post, name="pagina_detalle_post"),
     path('blogs/<slug:nombre_usuario>/<int:pk>', blog_usuario_click, name="pagina_detalle_post_usuario"),
     path('blogs/<slug:nombre_usuario>', blog_usuario, name="pagina_posts_propios"),
     path('blogs/', ListadoBlogs.as_view(), name="pagina_listado_blogs"),
