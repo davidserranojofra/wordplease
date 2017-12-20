@@ -8,9 +8,9 @@
     <h1 class="text-center">Mi lista de posts</h1>
 
     <ul>
-        {% for post in object_list %}
+        {% for post in posts %}
 
-            <a href="{% url 'pagina_detalle_post' post.pk %}" title="{{ post.titulo }}">
+        <a href="{% url 'pagina_detalle_post_usuario' post.usuario post.pk %}" title="{{ post.titulo }}">
             <div class="container" style="display: flex; justify-content: space-between; border: 1px solid orange; padding: 20px">
 
                 <div class="info">

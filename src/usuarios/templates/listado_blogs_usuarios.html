@@ -6,8 +6,12 @@
 {% block content %}
     <h1 class="text-center">Listado blogs</h1>
     <div class="p-5 text-center">
+
         {% for usuario in object_list %}
-            <p class="p-3"><strong>Nombre completo:</strong> {{ usuario.first_name }} {{ usuario.last_name }} <strong>| Usuario: </strong> {{ usuario.username }}</p>
+            <a href="{% url 'pagina_posts_propios' usuario.username %}">
+                <p class="p-3"><strong>Nombre completo:</strong> {{ usuario.first_name }} {{ usuario.last_name }} <strong>| Usuario: </strong> {{ usuario.username }}</p>
+            </a>
         {% endfor %}
+
     </div>
 {% endblock %}

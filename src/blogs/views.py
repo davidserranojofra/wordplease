@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import View
-from django.views.generic import ListView
 
 from blogs.formularios import PostForm
 from blogs.models import Post
@@ -47,21 +47,24 @@ class Nuevo_post(LoginRequiredMixin, View):
         return render(request, 'new_post_form.html', {'form': form})
 
 
-#def blog_usuario(request, pk):
-#    buscar_usuario = Post.objects.filter(pk=pk).select_related("usuario")
-#    if len(buscar_usuario) == 0:
-#        return render(request, '404.html', status=404)
-#    else:
-#        usuarios = buscar_usuario
-#        context = {'post': usuarios}
-#        return render(request, "mis_posts.html", context)
-#
+def blog_usuario(request, nombre_usuario):
+    usuario = get_object_or_404(User, username=nombre_usuario)
+    print(usuario)
+    posts_de_usuario = Post.objects.filter(usuario=usuario).order_by('-modificado_en')
+
+    context = {'posts': posts_de_usuario}
+    return render(request, "mis_posts.html", context)
 
 
-#class Mis_posts(ListView):
-#    model = Post
-#    template_name = "mis_posts.html"
-#
-#    def get_queryset(self):
-#        queryset = super(Mis_posts, self).get_queryset()
-#        return queryset.filter(usuario=self.request.user)
+
+def blog_usuario_click(request, nombre_usuario, pk):
+    usuario = get_object_or_404(User, username=nombre_usuario)
+
+    posible_post = Post.objects.filter(pk=pk).select_related("usuario")
+    if len(posible_post) == 0:
+        return render(request, "404.html", status=404)
+    else:
+        post = posible_post[0]
+        context = {'nombre': usuario, 'post': post}
+        return render(request, "detalle_post.html", context)
+
