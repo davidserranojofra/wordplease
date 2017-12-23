@@ -1,11 +1,18 @@
-
-from rest_framework.generics import ListCreateAPIView
-
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from blogs.models import Post
-from blogs.serializers import PostSerializer
+from blogs.serializers import PostSerializer, PostDetalleSerializer
 
 
 class ListarPostsAPI(ListCreateAPIView):
 
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
+
+    def get_serializer_class(self):
+        return PostSerializer if self.request.method == 'GET' else PostDetalleSerializer
+
+
+class PostDetalleAPI(RetrieveUpdateDestroyAPIView):
+
+    queryset =Post.objects.all()
+    serializer_class = PostDetalleSerializer
+

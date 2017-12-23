@@ -2,8 +2,18 @@ from rest_framework import serializers
 from blogs.models import Post
 
 
+
+
+
 class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
-      Model = Post
+      model = Post
+      fields = ['id', 'titulo', 'url_foto', 'fecha_publicacion']
+
+
+class PostDetalleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+      model = Post
       fields = '__all__'
