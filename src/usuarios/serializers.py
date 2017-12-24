@@ -1,53 +1,47 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from rest_framework.exceptions import ValidationError
 
 
 
-#class UsuarioListaSerializer(serializers.Serializer):
-#
-#    id = serializers.ReadOnlyField()
-#    username = serializers.CharField()
-#
-#
-#class UsuarioSerializer(UsuarioListaSerializer):
-#
-#    first_name = serializers.CharField()
-#    last_name = serializers.CharField()
-#    email = serializers.EmailField()
-#    password = serializers.CharField()
-#
-#    def validate_username(self, data):
-#        if self.instance is None and User.objects.filter(username=data).exists():
-#            raise ValidationError('Este usuario ya existe')
-#        if self.instance is not None and self.instance.username != data and User.objects.filter(username=data).exists():
-#            raise ValidationError('El usuario ya esta en uso')
-#        return data
-#
-#    def create(self, validate_data):
-#        instance = User()
-#        return self.update(instance, validate_data)
-#
-#    def update(self, instance, validate_data):
-#        instance.first_name = validate_data.get('first_name')
-#        instance.last_name = validate_data.get('last_name')
-#        instance.username = validate_data.get('username')
-#        instance.email = validate_data.get('email')
-#        instance.set_password(validate_data.get('password'))
-#        instance.save()
-#        return instance
+class UsuarioRegistroSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email', 'password']
+
+     #   def create(self, validated_data):
+     #       user = User(
+     #           first_name=validated_data['first_name'],
+     #           last_name=validated_data['last_name'],
+     #           email=validated_data['email'],
+     #           username=validated_data['username']
+     #       )
+     #       user.set_password(validated_data['password'])
+     #       user.save()
+     #       return user
+
+        def restore_object(self, attrs, instance=None):
+            user = super(UsuarioRegistroSerializer, self).restore_object(attrs, instance)
+            user.set_password(attrs['password'])
+            return user
+
+class ListadoBlogsUsuariosSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id','username']
 
 
-class UsuarioSerializer(serializers.ModelSerializer):
+#class UsuarioSerializer(serializers.ModelSerializer):
+#
+#    class Meta:
+#      model = User
+#      fields = ['id', 'titulo', 'url_foto', 'resumen', 'fecha_de_publicacion']
+
+
+class PostDetalleSerializer(serializers.ModelSerializer):
 
     class Meta:
       model = User
       fields = '__all__'
-
-
-#class PostDetalleSerializer(serializers.ModelSerializer):
-#
-#    class Meta:
-#      model = User
-#      fields = '__all__'
 

@@ -1,66 +1,28 @@
 from django.contrib.auth.models import User
-from rest_framework import status
-from rest_framework.generics import get_object_or_404, ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, ListAPIView
 
-#from usuarios.serializers import UsuarioSerializer, UsuarioListaSerializer
+from usuarios.permissions import UsuariosPermisos
+from usuarios.serializers import PostDetalleSerializer, UsuarioRegistroSerializer, ListadoBlogsUsuariosSerializer
 
 
-#Listado y creacion de usuarios
+# API Listado de blogs --->
 
-#class UsuariosListaAPI(APIView):
-#    def get(self, request):
-#        usuarios = User.objects.all()
-#        serializer = UsuarioListaSerializer(usuarios, many=True)
-#        return Response(serializer.data)
-#
-#    def post(self, request):
-#        serializer = UsuarioSerializer(data=request.data)
-#        if serializer.is_valid():
-#            usuario = serializer.save()
-#            return Response(serializer.data, status=status.HTTP_201_CREATED)
-#        else:
-#            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ListadoBlogsUsuarios(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = ListadoBlogsUsuariosSerializer
+    permission_classes = [UsuariosPermisos]
 
 
-#Listado de detalle de un usuario
+# API de usuarios --->
 
-#class UsuarioDetalleAPI(APIView):
-#
-#    def get(self, request, pk):
-#        usuario = get_object_or_404(User, pk=pk)
-#        serializer = UsuarioSerializer(usuario)
-#        return Response(serializer.data)
-#
-#    def put(self, request, pk):
-#        usuario = get_object_or_404(User, pk=pk)
-#        serializer = UsuarioSerializer(usuario, data=request.data)
-#        if serializer.is_valid():
-#            usuario = serializer.save()
-#            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-#        else:
-#            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#    def delete(self, request, pk):
-#        usuario = get_object_or_404(User, pk=pk)
-#        usuario.delete()
-#        return Response(status=status.HTTP_204_NO_CONTENT)
-
-#  ----- - - - - - - - - - - - - - --
-
-##API Listado de blogs
-from usuarios.serializers import UsuarioSerializer
-
-
-class UsuariosListaAPI(ListCreateAPIView):
+class RegistroUsuario(CreateAPIView):
 
     queryset = User.objects.all()
-    serializer_class = UsuarioSerializer
-
+    serializer_class = UsuarioRegistroSerializer
 
 
 class UsuarioDetalleAPI(RetrieveUpdateDestroyAPIView):
 
     queryset = User.objects.all()
-    serializer_class = UsuarioSerializer
+    serializer_class = PostDetalleSerializer
+    permission_classes = [UsuariosPermisos]
