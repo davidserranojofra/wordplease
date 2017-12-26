@@ -10,7 +10,8 @@ from usuarios.serializers import PostDetalleSerializer, UsuarioRegistroSerialize
 class ListadoBlogsUsuarios(ListAPIView):
     queryset = User.objects.all()
     serializer_class = ListadoBlogsUsuariosSerializer
-    permission_classes = [UsuariosPermisos]
+    search_fields = ['username']
+    ordering_fields = ['first_name']
 
 
 # API de usuarios --->

@@ -43,14 +43,14 @@ urlpatterns = [
 
     #API de usuarios
     path('api/1.0/usuarios/<int:pk>', UsuarioDetalleAPI.as_view(), name='api_listar_usuarios_detalle'),
-    path('api/1.0/usuarios/', RegistroUsuario.as_view(), name='api_listar_usuarios'),
-
-    #API de blogs
-    path('api/1.0/blogs/', ListadoBlogsUsuarios.as_view(), name='api_listar_blogs'),
+    path('api/1.0/usuarios/', RegistroUsuario.as_view(), name='api_registrar_usuarios'),
 
     #API de posts
-    path('api/1.0/posts/<int:pk>', PostDetalleAPI.as_view(), name='api_detalle_post'),
-    path('api/1.0/posts/', ListarPostsAPI.as_view(), name='api_listar_posts')
+    path('api/1.0/blogs/<usuario>', ListarPostsAPI.as_view(), name='api_listar_posts'),
+    path('api/1.0/posts/<int:pk>', PostDetalleAPI.as_view(), name='api_detalle_posts'),
+
+    # API de blogs
+    path('api/1.0/blogs/', ListadoBlogsUsuarios.as_view(), name='api_listar_blogs')
 
 
 
