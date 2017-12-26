@@ -1,5 +1,7 @@
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from blogs.models import Post
 from blogs.permissions import PostPermisos, PostDetallesPermisos
 from blogs.serializers import PostSerializer, PostDetalleSerializer
