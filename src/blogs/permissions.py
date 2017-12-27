@@ -1,5 +1,5 @@
 from rest_framework.permissions import BasePermission
-
+from datetime import datetime
 
 class PostPermisos(BasePermission):
 
@@ -10,7 +10,11 @@ class PostPermisos(BasePermission):
 
 
     def has_object_permission(self, request, view, obj):
-        return request.user == obj or request.user.is_superuser
+
+        if request.method == 'GET' and obj.fecha_publicacion > datetime.now():
+            return False
+
+        return obj.usuario == request.user or request.user.is_superuser
 
 
 

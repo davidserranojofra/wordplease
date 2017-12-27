@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from blogs.api import ListarPostsAPI, PostDetalleAPI
+from blogs.api import ListarPostsAPI, PostDetalleAPI, PublicarPostAPI
 from blogs.views import home, Nuevo_post, blog_usuario, blog_usuario_click
 from usuarios.api import UsuarioDetalleAPI, RegistroUsuario, ListadoBlogsUsuarios
 from usuarios.views import LoginView, LogoutView, ListadoBlogs, signup
@@ -48,6 +48,7 @@ urlpatterns = [
     #API de posts
     path('api/1.0/blogs/<usuario>', ListarPostsAPI.as_view(), name='api_listar_posts'),
     path('api/1.0/posts/<int:pk>', PostDetalleAPI.as_view(), name='api_detalle_posts'),
+    path('api/1.0/publicar/', PublicarPostAPI.as_view(), name='api_publicar_posts'),
 
     # API de blogs
     path('api/1.0/blogs/', ListadoBlogsUsuarios.as_view(), name='api_listar_blogs')

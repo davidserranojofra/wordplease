@@ -2,8 +2,10 @@ from django.contrib.auth.models import User
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, ListAPIView
 from rest_framework.permissions import AllowAny
 
+from usuarios.models import Profile
 from usuarios.permissions import UsuariosPermisos
-from usuarios.serializers import PostDetalleSerializer, UsuarioRegistroSerializer, ListadoBlogsUsuariosSerializer
+from usuarios.serializers import PostDetalleSerializer, UsuarioRegistroSerializer, ListadoBlogsUsuariosSerializer, \
+    ProfileSerializer
 
 
 # API Listado de blogs --->
@@ -20,8 +22,8 @@ class ListadoBlogsUsuarios(ListAPIView):
 
 class RegistroUsuario(CreateAPIView):
 
-    queryset = User.objects.all()
-    serializer_class = UsuarioRegistroSerializer
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
 
 class UsuarioDetalleAPI(RetrieveUpdateDestroyAPIView):

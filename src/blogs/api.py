@@ -1,14 +1,12 @@
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, ListAPIView
 
 from blogs.models import Post
 from blogs.permissions import PostPermisos, PostDetallesPermisos
-from blogs.serializers import PostSerializer, PostDetalleSerializer
+from blogs.serializers import PostSerializer, PostDetalleSerializer, PublicarPostSerializer
 
 
-
-class ListarPostsAPI(ListCreateAPIView):
+class ListarPostsAPI(ListAPIView):
 
     permission_classes = [PostPermisos]
     filter_backends = [SearchFilter, OrderingFilter]
@@ -23,9 +21,6 @@ class ListarPostsAPI(ListCreateAPIView):
     def get_serializer_class(self):
         return PostSerializer if self.request.method == 'GET' else PostDetalleSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(usuario=self.request.user)
-
 
 class PostDetalleAPI(RetrieveUpdateDestroyAPIView):
 
@@ -34,5 +29,15 @@ class PostDetalleAPI(RetrieveUpdateDestroyAPIView):
     permission_classes = [PostDetallesPermisos]
 
     def perform_update(self, serializer):
+        serializer.save(usuario=self.request.user)
+
+
+class PublicarPostAPI(CreateAPIView):
+
+    queryset = Post.objects.all()
+    serializer_class = PublicarPostSerializer
+    permission_classes = [PostDetallesPermisos]
+
+    def perform_create(self, serializer):
         serializer.save(usuario=self.request.user)
 

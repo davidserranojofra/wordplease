@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class ProfileUsuario(models.Model):
+class Profile(models.Model):
 
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    blog = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    url_blog = models.CharField(max_length=100)
