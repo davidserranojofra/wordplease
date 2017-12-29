@@ -38,7 +38,6 @@ urlpatterns = [
     path('', home, name="pagina_inicio"),
 
 
-
     #API REST
 
     #API de usuarios
