@@ -7,6 +7,6 @@ admin.site.register(Categoria)
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('titulo','creado_en', 'modificado_en')
-    list_filter = ('categoria', 'usuario')
+    list_display = ('titulo','resumen', 'url_foto', 'fecha_publicacion')
+    list_filter = ('categoria', 'usuario', 'fecha_publicacion')
     search_fields = ('titulo', 'resumen', 'cuerpo_del_post')

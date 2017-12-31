@@ -9,15 +9,9 @@ class PostPermisos(BasePermission):
 
 
     def has_object_permission(self, request, view, obj):
-        return obj.usuario == request.user or request.user.is_superuser
 
+        if request.method == 'GET' and obj.usuario == request.user or request.user.is_superuser:
+            return True
 
-
-class PostDetallesPermisos(BasePermission):
-
-    def has_permission(self, request, view):
-        return request.user.is_authenticated
-
-
-    def has_object_permission(self, request, view, obj):
-        return obj.usuario == request.user or request.user.is_superuser
+        if request.method == 'PUT' or request.method == 'DELETE':
+            return obj.usuario == request.user or request.user.is_superuser
