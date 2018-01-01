@@ -9,11 +9,22 @@ from django.views import View
 from blogs.formularios import PostForm
 from blogs.models import Post
 
+
+
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+
+
 @login_required
 def home(request):
-    ultimos_posts = Post.objects.all().order_by("-modificado_en")[:10]
-    context = {'posts': ultimos_posts}
-    return render(request, "home.html", context)
+    ultimos_posts = Post.objects.all().order_by("-modificado_en")
+    paginator = Paginator(ultimos_posts, 5)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, "home.html", {'posts': posts})
+
 
 @login_required
 def detalle_post(request, pk):

@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from blogs.models import Post
 from blogs.permissions import PostPermisos
-from blogs.serializers import PostSerializer, PostDetalleSerializer, PublicarPostSerializer
+from blogs.serializers import PostDetalleSerializer, PublicarPostSerializer
 from datetime import datetime
 
 class ListarPostsAPI(ListAPIView):

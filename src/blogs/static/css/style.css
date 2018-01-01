@@ -1,0 +1,30 @@
+* {
+
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+}
+
+form {
+    text-align: center;
+
+}
+
+div form p {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+input, textarea, select {
+    border: 1px solid #007bff;
+}
+
+button {
+    margin-top: 10px;
+}
