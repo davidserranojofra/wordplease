@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from blogs.models import Post
-from usuarios.serializers import UsuarioRegistroSerializer
+from usuarios.serializers import UsuarioMostrarSerializer
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -12,7 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 class PostDetalleSerializer(serializers.ModelSerializer):
 
-    usuario = UsuarioRegistroSerializer(read_only=True)
+    usuario = UsuarioMostrarSerializer(read_only=True)
 
     class Meta:
       model = Post

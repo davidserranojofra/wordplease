@@ -8,6 +8,8 @@ from blogs.permissions import PostPermisos
 from blogs.serializers import PostDetalleSerializer, PublicarPostSerializer
 from datetime import datetime
 
+
+
 class ListarPostsAPI(ListAPIView):
 
     permission_classes = [PostPermisos]
@@ -27,7 +29,6 @@ class ListarPostsAPI(ListAPIView):
 
     #def get_serializer_class(self):
      #   return PostSerializer if self.request.method == 'GET' else PostDetalleSerializer
-
 
 
 
@@ -59,4 +60,3 @@ class PublicarPostAPI(CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(usuario=self.request.user)
-

@@ -45,3 +45,11 @@ class PostDetalleSerializer(serializers.ModelSerializer):
 
 
 
+class UsuarioMostrarSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+
+
