@@ -10,21 +10,16 @@
         {% for post in posts %}
 
         <a href="{% url 'pagina_detalle_post_usuario' post.usuario post.pk %}" title="{{ post.titulo }}">
-            <div class="container" style="display: flex; justify-content: space-between; border: 1px solid orange; padding: 20px">
 
-                <div class="info">
-                    <h3>{{ post.titulo }}</h3>
-                    <p>{{ post.resumen }}</p>
-                    <date>{{ post.fecha_publicacion }}</date>
-                </div>
+            {% include "plantilla_post_minimizada.html" %}
 
-                <img src="{{ post.url_foto }}" height="150px" alt="{{ post.titulo }}" title="{{ post.titulo }}">
-
-            </div>
         </a>
 
         {% endfor%}
     </ul>
 
+    <br>
+
+    {% include "paginador.html" %}
 
 {% endblock %}

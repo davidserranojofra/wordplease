@@ -1,0 +1,11 @@
+<div class="container" style="display: flex; justify-content: space-between; border: 1px solid orange; padding: 20px">
+
+    <div class="info">
+        <h3>{{ post.titulo }}</h3>
+        <p>{{ post.resumen }}</p>
+        <date>{{ post.fecha_publicacion }}</date>
+    </div>
+
+    <img src="{{ post.url_foto }}" height="150px" alt="{{ post.titulo }}" title="{{ post.titulo }}">
+
+</div>

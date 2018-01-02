@@ -28,3 +28,10 @@ input, textarea, select {
 button {
     margin-top: 10px;
 }
+
+.containerlistado {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid orange;
+    padding: 20px
+}

@@ -6,49 +6,15 @@
 
     {% for post in posts %}
         <a href="{% url 'pagina_detalle_post_usuario' post.usuario post.pk %}" title="{{ post.titulo }}">
-            <div class="container" style="display: flex; justify-content: space-between; border: 1px solid orange; padding: 20px">
 
-                <div class="info">
-                    <h3>{{ post.titulo }}</h3>
-                    <p>{{ post.resumen }}</p>
-                    <date>{{ post.modificado_en }}</date>
-                </div>
+            {% include "plantilla_post_minimizada.html" %}
 
-                <img src="{{ post.url_foto }}" height="150px" alt="{{ post.titulo }}" title="{{ post.titulo }}">
-
-            </div>
         </a>
     {% endfor %}
 
     <br>
 
-
-    <div style="display: flex; justify-content: center;">
-    <div class="pagination">
-        <span class="step-links">
-            {% if posts.has_previous %}
-                <a href="?page=1">&laquo; Primera</a>
-                <a href="?page={{ posts.previous_page_number }}">Anterior</a>
-            {% endif %}
-
-            <span class="current">
-                Pagina {{ posts.number }} de {{ posts.paginator.num_pages }}.
-            </span>
-
-            {% if posts.has_next %}
-                <a href="?page={{ posts.next_page_number }}">siguiente</a>
-                <a href="?page={{ posts.paginator.num_pages }}">Ùltima &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-    </div>
-
-
-    <br><br><br>
-
-
-
-
-
+    {% include "paginador.html" %}
 
 {% endblock %}
+

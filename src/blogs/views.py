@@ -5,15 +5,9 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import View
-
 from blogs.formularios import PostForm
 from blogs.models import Post
-
-
-
-
 from django.core.paginator import Paginator
-
 
 
 
@@ -57,14 +51,17 @@ class Nuevo_post(LoginRequiredMixin, View):
             messages.success(request, message)
         return render(request, 'new_post_form.html', {'form': form})
 
+
+
 @login_required
 def blog_usuario(request, nombre_usuario):
     usuario = get_object_or_404(User, username=nombre_usuario)
-    print(usuario)
     posts_de_usuario = Post.objects.filter(usuario=usuario).order_by('-modificado_en')
+    paginator = Paginator(posts_de_usuario, 5)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, "mis_posts.html", {'posts': posts})
 
-    context = {'posts': posts_de_usuario}
-    return render(request, "mis_posts.html", context)
 
 
 @login_required
@@ -78,4 +75,3 @@ def blog_usuario_click(request, nombre_usuario, pk):
         post = posible_post[0]
         context = {'nombre': usuario, 'post': post}
         return render(request, "detalle_post.html", context)
-
