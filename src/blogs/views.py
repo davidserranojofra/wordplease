@@ -12,7 +12,7 @@ from blogs.models import Post
 
 
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 
 
 
