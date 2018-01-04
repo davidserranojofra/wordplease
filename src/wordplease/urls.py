@@ -22,13 +22,17 @@ from usuarios.api import UsuarioDetalleAPI, RegistroUsuario, ListadoBlogsUsuario
 from usuarios.views import LoginView, LogoutView, ListadoBlogs, signup
 
 urlpatterns = [
+
     #admin Django
     path('admin/', admin.site.urls),
+
+    #WEB
 
     #usuarios
     path('login', LoginView.as_view(), name='pagina_login'),
     path('logout', LogoutView.as_view(), name='pagina_logout'),
     path('signup', signup, name='pagina_signup'),
+
 
     #blogs
     path('new-post', Nuevo_post.as_view(), name="pagina_nuevo_post"),
@@ -36,7 +40,6 @@ urlpatterns = [
     path('blogs/<slug:nombre_usuario>/<int:pk>', blog_usuario_click, name="pagina_detalle_post_usuario"),
     path('blogs/<slug:nombre_usuario>/', blog_usuario, name="pagina_posts_propios"),
     path('blogs/', ListadoBlogs.as_view(), name="pagina_listado_blogs"),
-
     path('', home, name="pagina_inicio"),
 
 
@@ -46,10 +49,12 @@ urlpatterns = [
     path('api/1.0/usuarios/<int:pk>', UsuarioDetalleAPI.as_view(), name='api_listar_usuarios_detalle'),
     path('api/1.0/usuarios/', RegistroUsuario.as_view(), name='api_registrar_usuarios'),
 
+
     #API de posts
     path('api/1.0/blogs/<usuario>', ListarPostsAPI.as_view(), name='api_listar_posts'),
     path('api/1.0/posts/<int:pk>', PostDetalleAPI.as_view(), name='api_detalle_posts'),
     path('api/1.0/publicar/', PublicarPostAPI.as_view(), name='api_publicar_posts'),
+
 
     # API de blogs
     path('api/1.0/blogs/', ListadoBlogsUsuarios.as_view(), name='api_listar_blogs')

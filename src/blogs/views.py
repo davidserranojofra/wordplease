@@ -32,6 +32,7 @@ def detalle_post(request, pk):
         return render(request, "detalle_post.html", context)
 
 
+
 class Nuevo_post(LoginRequiredMixin, View):
 
     def get(self, request):
